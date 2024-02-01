@@ -7,7 +7,7 @@ import config
 
 def get_city_coord(city):
     """Получение координат города"""
-    # Задаем параметры запроса для получения координат
+    # Задаем параметры запроса для получения координат_
     payload = {"geocode": city, "apikey": config.geo_key, "format": "json"}
     # Отправляем GET-запрос к API Yandex Maps Geocoding
     r = requests.get("https://geocode-maps.yandex.ru/1.x", params=payload)
