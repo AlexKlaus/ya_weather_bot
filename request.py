@@ -17,3 +17,16 @@ def get_city_coord(city):
     return geo["response"]["GeoObjectCollection"]["featureMember"][0]["GeoObject"][
         "Point"
     ]["pos"]
+
+
+def get_weather(city):
+    """Получение информации о погоде"""
+    coordinates = get_city_coord(city).split()
+    payload = {"lat": coordinates[1], "lon": coordinates[0], "lang": "ru_RU"}
+    r = requests.get(
+        "https://api.weather.yandex.ru/v2/forecast",
+        params=payload,
+        headers=config.weather_key,
+    )
+    weather_data = json.loads(r.text)
+    return weather_data
